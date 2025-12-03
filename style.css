@@ -1,0 +1,815 @@
+/* --- Variáveis CSS (Cores do Tema Dark) --- */
+:root {
+    --bg-dark: #121212; /* Cor de fundo principal */
+    --text-primary: #ffffff; /* Cor do texto */
+    --text-secondary: #bdadad;
+    --card-bg: rgba(255, 255, 255, 0.05); /* Fundo sutil para cartões */
+    --accent: #007bff; /* Seu azul de destaque */
+    --glass-blur: 10px;
+}
+
+/* --- Base --- */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    
+}
+
+/* --- Estilo do Botão Voltar (Blindado) --- */
+.btn-nav-back {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px; 
+    margin: 0 !important;
+    
+    /* Estado Normal */
+    color: var(--accent) !important;            
+    border: 1px solid var(--accent) !important; 
+    background-color: transparent !important;
+    transition: all 0.3s ease;
+}
+
+/* Agrupamos HOVER, FOCUS, ACTIVE e VISITED.
+   Usamos ".navbar .btn-nav-back" para ter prioridade sobre o Bootstrap.
+*/
+.navbar .btn-nav-back:hover,
+.navbar .btn-nav-back:focus,
+.navbar .btn-nav-back:active,
+.navbar .btn-nav-back:visited {
+    background-color: var(--accent) !important; /* Fundo Azul */
+    color: #ffffff !important;                  /* Texto Branco OBRIGATÓRIO */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); 
+    border-color: var(--accent) !important;
+    outline: none !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--text-primary) !important;
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent) !important;
+}
+
+/* --- Ajuste Fino para o Navbar Brand (Dev. Soares) --- */
+.navbar-brand {
+    margin-right: 0 !important;
+    padding-left: 0.5rem; 
+    color: var(--text-primary); 
+    font-weight: 700;
+}
+/* --- Navbar Estilo "Barra Fixa" (Preto Sólido/Degradê) --- */
+.navbar-glass {
+    /* Substituindo o efeito de vidro pelo fundo preto igual da foto */
+    background: linear-gradient(180deg, #000000 0%, #121212 100%);
+    
+    /* Adiciona uma sombra forte embaixo para separar do vídeo */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+    
+    /* Remove a borda transparente e coloca uma borda escura sutil */
+    border-bottom: 1px solid #222;
+    
+    /* Garante que a barra tenha altura suficiente */
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+/* --- Seção Hero (Adaptada para Vídeo de Fundo Global) --- */
+.hero-section {
+    min-height: 100vh;
+    /* Remover background-color se o vídeo cobrir tudo, mas mantê-lo é bom como fallback */
+    background-color: transparent; 
+    position: initial; /* Garante que não interfira no z-index */
+    overflow: hidden; 
+}
+
+/* NOVO: Estiliza o Vídeo para cobrir o FUNDO FIXO do SITE INTEIRO */
+.background-video-global {
+    position: fixed; /* Fixa o vídeo na viewport enquanto o conteúdo rola */
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100; /* Garante que fique MUITO atrás de todo o conteúdo */
+    transform: translate(-50%, -50%); 
+    filter: brightness(50%); /* Escurece para o texto ficar legível */
+}
+
+/* Removendo o antigo .background-video pois ele não será mais usado */
+/* (Você pode apagar o bloco .background-video se ele não for usado em mais lugar algum) */
+
+/* NOVO: Garante que o conteúdo fique sobre o vídeo (Header) */
+.content-overlay {
+    position: relative;
+    z-index: 1; 
+}
+
+/* --- Seção Sobre Mim (Vídeo de Fundo) --- */
+
+/* 1. Torna a seção pai relativa para posicionar o vídeo absoluto dentro dela */
+.sobre-com-video-fundo {
+    position: relative;
+    overflow: hidden;
+    color: var(--text-primary); 
+    background: transparent; 
+}
+
+/* 2. Estilo do Vídeo de Fundo da Seção Sobre Mim */
+.video-sobre-fundo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0; 
+    transform: translate(-50%, -50%); 
+    filter: brightness(50%) blur(2px); /* Escurece e DESFOCA */
+}
+
+/* 3. Estilo para o Conteúdo (Texto, Botões, Vídeo de Apresentação) */
+.content-overlay-sobre {
+    position: relative;
+    z-index: 1; 
+    padding-top: 3rem; /* Padding para o conteúdo não colar nas bordas do section */
+    padding-bottom: 3rem;
+}
+
+/* 4. Estilo para o Vídeo de Apresentação (o player na coluna lateral) */
+.video-apresentacao {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 3px solid rgba(255, 255, 255, 0.2); 
+}
+
+
+/* --- Foto de Perfil / Ilustrativa --- */
+.foto-perfil {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+    box-shadow: 0 0 20px rgba(25, 0, 255, 0.5); /* Sombra neon */
+    transition: transform 0.3s ease;
+}
+
+.foto-perfil:hover {
+    transform: scale(1.05);
+}
+
+/* --- Section Design (Projetos e Footer) --- */
+.section-darker {
+    /* Fundo bem escuro, quase opaco (95%) */
+    background-color: rgba(var(--bg-darker-rgb), 0.95); 
+}
+/* --- Animação de Entrada (Fade In) --- */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Efeito Typewriter --- */
+.typewriter-text {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* --- Projeto Card (Glassmorphism) --- */
+.project-card, .certificate-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));.btn-nav-back:hover {
+    background-color: var(--accent); 
+    color: #ffffff;                  
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); 
+    transform: translateY(-2px);     
+}
+    border: 1px solid rgba(25, 0, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    min-height: 250px;
+    box-shadow: 0 8px 32px 0 rgba(13, 76, 192, 0.37);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover, .certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px 0 rgba(248, 248, 248, 0.3);
+}
+
+.card-title {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.card-tags .badge {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* --- Habilidades (Skill Tags) --- */
+.skill-tag {
+    display: inline-block;
+    background-color: var(--card-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--accent); 
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    /* ATUALIZADO: Adicionamos transform na transição */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; 
+}
+
+/* Estado HOVER: Fundo Azul, Borda Branca, e AUMENTA DE TAMANHO */
+.skill-tag:hover {
+    background-color: var(--accent); 
+    color: var(--bg-dark); .btn-nav-back:hover {
+    background-color: var(--accent); 
+    color: #ffffff;                  
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); 
+    transform: translateY(-2px);     
+}
+    border-color: var(--text-primary); 
+    cursor: default;
+    
+    /* NOVO: Aumenta o tamanho em 10% (mais notável) */
+    transform: scale(1.1); 
+}
+
+/* --- Footer Social Icons --- */
+.btn-social {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-social:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* --- Certificados Card --- */
+.certificate-card .certificate-thumb {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* --- Estilo Específico para o Botão "Voltar" (certificados.html) --- */
+
+.btn-nav-back {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px; 
+    margin: 0 !important;
+}
+
+.btn-nav-back:hover {
+    transform: none; 
+    background-color: var(--accent-dark) !important;
+    color: var(--bg-dark) !important;
+}
+
+/* --- Estilo Específico para a Seção Sobre Mim --- */
+/* --- Estilo Específico para a Seção Sobre Mim --- */
+#sobre {
+    /* DEFINE O PRETO SÓLIDO: Usa a variável --bg-dark (que é #121212) sem transparência. */
+    background-color: var(--bg-dark); 
+    
+    /* Garante que o conteúdo tenha espaço interno. */
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+    
+    /* Garante que o z-index não atrapalhe */
+    position: relative;
+    z-index: 1; 
+}
+
+/* NOVO: Ajusta o tamanho da fonte do email */
+.footer-email {
+    font-size: 0.9rem !important;
+}
+/* --- Ajustes para Compactar o Rodapé --- */
+
+/* Zera a margem do parágrafo "Vamos conversar?" */
+#contato p.lead {
+    font-size: 1rem;
+    margin-bottom: 0rem !important; /* ZERAMOS a margem inferior do texto principal */
+}
+
+/* Zera a margem da div que contém o email (se ela tiver mb-3) */
+#contato .mb-3 {
+    margin-bottom: 0rem !important; /* Remove o espaço entre o texto e os ícones */
+}
+
+/* Reduz o espaço acima do texto de direitos autorais */
+#contato .mt-4 {
+    margin-top: 0.5rem !important; /* Reduz de 4 para 0.5 o espaço superior */
+}
+
+#contato p.lead {
+    font-size: 1rem; /* Reduz para o tamanho normal de parágrafo (16px) */
+    margin-bottom: 0.5rem !important; /* Reduz o espaço abaixo */
+}
+
+/* --- Estilo de Fonte Aprimorado para a Seção "Sobre Mim" --- */
+
+/* --- Fonte Aprimorada para a Seção "Sobre Mim" --- */
+/* --- Estilo de Fonte Aprimorado para a Seção "Sobre Mim" --- */
+
+#sobre p.lead {
+    font-family: 'Montserrat', sans-serif; /* Aplicando a nova fonte */
+    font-weight: 300; /* Deixa o texto mais leve e limpo */
+    font-size: 1.3rem; /* Aumenta levemente para melhor leitura */
+}
+
+/* Classe que será adicionada via JavaScript */
+.active-link {
+    /* Cor de destaque */
+    color: var(--accent) !important; 
+    /* Coloca em negrito */
+    font-weight: 700; 
+    /* Adiciona uma transição suave ao mudar o link */
+    transition: color 0.3s ease-in-out;
+}
+
+/* --- Estilo Específico para Cartões de Certificado --- */
+.certificate-card {
+    /* Base do cartão */
+    background-color: var(--card-bg); /* Fundo ligeiramente cinza/transparente */
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(57, 2, 255, 0.3); /* Sombra suave */
+    height: 100%; /* Garante que todos os cartões na linha tenham a mesma altura */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Garante que a imagem se ajuste bem */
+    transition: transform 0.3s ease;
+}
+
+/* Efeito Hover (opcional, para dar vida) */
+.certificate-card:hover {
+    transform: translateY(-5px); /* Levanta o cartão */
+    box-shadow: 0 6px 15px rgba(var(--bg-darker-rgb), 0.5); 
+}
+
+/* Estilo da imagem de capa (Thumbnail) */
+.certificate-thumb {
+    border-radius: 8px; /* Cantos arredondados na imagem */
+    margin-bottom: 1rem;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    width: 100%;
+    height: auto;
+}
+
+/* Estilo do corpo do cartão (dentro do HTML, você usou a div .card-body) */
+.certificate-card .card-body {
+    padding: 0; /* Remove o padding interno, pois já temos no .certificate-card */
+    flex-grow: 1; /* Faz o corpo ocupar o espaço restante */
+}
+
+/* Estilo do Título */
+.certificate-card .card-title {
+    color: var(--accent); /* Usa a cor de destaque */
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Ajuste o rodapé, pois você usou p-4 novamente */
+footer {
+    padding: 1rem 0 !important; /* Ajuste para ser mais compacto */
+}
+
+.gateway-card {
+    background-color: var(--card-bg); /* Fundo sutil (rgba) */
+    border: 1px solid rgba(247, 247, 247, 0.1);
+    border-radius: 12px;
+    padding: 2rem; /* Mais espaçoso que um card normal */
+    height: 100%;
+    box-shadow: 0 6px 15px rgba(72, 0, 241, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Estilo do TÍTULO no estado NORMAL */
+.gateway-card .card-title {
+    color: var(--text-primary); /* AGORA BRANCO NO ESTADO NORMAL */
+    font-size: 1.8rem; 
+    font-weight: 700;
+    transition: color 0.3s ease; /* Adiciona transição para a cor */
+}
+
+.gateway-card .card-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.gateway-icon {
+    font-size: 3.5rem; /* Ícone grande */
+    color: var(--accent);
+}
+
+/* --- Estilo Específico para Cartões de Gateway (Certificados) --- */
+
+/* Estilo do ÍCONE no estado NORMAL */
+.gateway-icon {
+    font-size: 3.5rem; 
+    color: var(--text-primary); /* AGORA BRANCO NO ESTADO NORMAL */
+    transition: color 0.3s ease; /* Adiciona transição para a cor */
+}
+
+/* CORREÇÃO: Efeito Hover Azul no Card de Certificado */
+.gateway-card:hover {
+    transform: scale(1.02);
+    /* Aplicando o azul de destaque */
+    background-color: var(--accent);
+    /* Sombra azul para combinar */
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.6); 
+}
+
+/* Garante que o texto e o ícone fiquem brancos quando o fundo for azul */
+.gateway-card:hover .card-title,
+.gateway-card:hover .card-text,
+.gateway-card:hover .gateway-icon {
+    color: var(--text-primary) !important;
+}
+
+
+/* CORREÇÃO: Nome da Hero Menor */
+.hero-title-name {
+    font-size: 3rem !important; /* Tamanho do seu nome na Hero */
+    margin-bottom: 1.5rem !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .hero-title-name {
+        font-size: 2rem !important; /* Reduz mais em telas pequenas */
+    }
+}
+
+/* CORREÇÃO: Ícones Azuis nos Títulos H2 */
+h2 i {
+    color: var(--accent) !important; /* Força a cor azul de destaque */
+    margin-right: 0.5rem;
+}
+
+/* =========================================
+   5. GALERIA DE CERTIFICADOS (ADICIONAR NO FINAL)
+   ========================================= */
+
+.cert-card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+    border-color: var(--accent);
+}
+
+/* Área da Imagem */
+.cert-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 16/9; 
+    background-color: #000;
+}
+
+.cert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Efeito de Olho ao passar o mouse */
+.cert-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cert-overlay i {
+    color: #fff;
+    font-size: 2rem;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+/* Animações */
+.cert-card:hover .cert-img { transform: scale(1.1); }
+.cert-card:hover .cert-overlay { opacity: 1; }
+.cert-card:hover .cert-overlay i { transform: scale(1); }
+
+/* Botão Visualizar */
+.cert-card .btn-outline-primary {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.cert-card .btn-outline-primary:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* ============================================
+   SIDEBAR DE CONTATO - Estilos Globais
+   ============================================ */
+
+/* Container principal da sidebar */
+.contact-sidebar {
+    position: fixed;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+/* Lista de bolinhas */
+.contact-bubbles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Espaçamento entre bolinhas */
+}
+
+/* Item individual (wrapper) */
+.bubble-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================
+   BOLINHA DE CONTATO - Estilos Desktop
+   ============================================ */
+
+.contact-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #111;
+    border: 2px solid #333;
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    transition: all 0.25s ease;
+    /* Foco acessível por teclado */
+    outline: 3px solid transparent;
+    outline-offset: 2px;
+}
+
+/* Estado de foco acessível (teclado) */
+.contact-bubble:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* ============================================
+   CORES E EFEITOS AO PASSAR O MOUSE
+   ============================================ */
+
+/* WhatsApp - Verde */
+.contact-bubble.whatsapp:hover {
+    background-color: #25d366;
+    border-color: #20ba58;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+/* GitHub - Cinza/Preto */
+.contact-bubble.github:hover {
+    background-color: #333;
+    border-color: #555;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(51, 51, 51, 0.4);
+}
+
+/* LinkedIn - Azul */
+.contact-bubble.linkedin:hover {
+    background-color: #0a66c2;
+    border-color: #085099;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(10, 102, 194, 0.4);
+}
+
+/* Gmail - Vermelho */
+.contact-bubble.gmail:hover {
+    background-color: #ea4335;
+    border-color: #c5221f;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(234, 67, 53, 0.4);
+}
+
+/* ============================================
+   RESPONSIVIDADE - Tablets (1024px e abaixo)
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .contact-sidebar {
+        left: 20px; /* Reduz a distância da esquerda */
+    }
+
+    .contact-bubble {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        border-width: 1.5px;
+    }
+
+    .contact-bubbles {
+        gap: 10px; /* Reduz o espaçamento */
+    }
+}
+
+/* ============================================
+   RESPONSIVIDADE - Mobile (768px e abaixo)
+   ============================================ */
+
+@media (max-width: 768px) {
+    .contact-sidebar {
+        left: 12px; /* Mais próximo da borda em mobile */
+    }
+
+    .contact-bubble {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        border-width: 1.5px;
+    }
+
+    .contact-bubbles {
+        gap: 10px;
+    }
+}
+
+/* ============================================
+   RESPONSIVIDADE - Celulares Pequenos (480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+    .contact-sidebar {
+        left: 8px; /* Borda mínima em celulares */
+    }
+
+    .contact-bubble {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        border-width: 1px;
+    }
+
+    .contact-bubbles {
+        gap: 8px;
+    }
+}
+
+/* ============================================
+   ACESSIBILIDADE - Redução de Movimento
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-bubble {
+        transition: none;
+    }
+
+    .contact-bubble:hover {
+        transform: none; /* Remove animação de scale */
+    }
+}
+
+/* ============================
+   Ajustes de espaçamento e imagem
+   ============================ */
+
+/* Torna a seção de projetos visualmente "maior" que a seção sobre */
+#projetos {
+    /* aumenta o espaçamento interno inferior para ficar mais longo */
+    padding-top: 3.5rem;   /* mantém espaçamento superior consistente */
+    padding-bottom: 5.5rem; /* aumenta a altura visual */
+}
+
+/* Mantém a seção "Sobre" compacta, garantindo que "Projetos" pareça maior */
+#sobre {
+    padding-bottom: 2rem;
+}
+
+/* Move a seção "Minhas Habilidades" um pouco para baixo */
+#habilidades {
+    margin-top: 4rem;
+}
+
+/* Ajustes responsivos para telas menores */
+@media (max-width: 768px) {
+    #projetos {
+        padding-top: 2.5rem;
+        padding-bottom: 4rem;
+    }
+
+    #habilidades {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #projetos {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    #habilidades {
+        margin-top: 2rem;
+    }
+}
+
+#projetos {
+    /* aumenta o espaçamento interno superior e inferior para alongar visualmente a seção */
+    padding-top: 6.5rem;   /* antes: 3.5rem — mais espaço acima (separa de 'Sobre') */
+    padding-bottom: 7.5rem; /* antes: 5.5rem — mais espaço abaixo (separa de 'Minhas Habilidades') */
+}
+
+/* Mantém a seção "Sobre" com mais espaço inferior para separar de Projetos */
+#sobre {
+    padding-bottom: 3.5rem; /* antes: 2rem — aumenta distância para #projetos */
+}
+
+/* Move a seção "Minhas Habilidades" mais para baixo (aumenta gap entre Projetos e Habilidades) */
+#habilidades {
+    margin-top: 6rem; /* antes: 4rem — aumenta espaçamento vertical */
+}
+
+/* Ajustes responsivos para telas menores */
+@media (max-width: 768px) {
+    #projetos {
+        padding-top: 3rem;   /* antes: 2.5rem */
+        padding-bottom: 5rem; /* antes: 4rem */
+    }
+
+    #habilidades {
+        margin-top: 4rem; /* antes: 3rem */
+    }
+
+    #sobre {
+        padding-bottom: 2.5rem; /* leve ajuste para mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    #projetos {
+        padding-top: 2.5rem;   /* antes: 2rem */
+        padding-bottom: 4rem;  /* antes: 3rem */
+    }
+
+    #habilidades {
+        margin-top: 3rem; /* antes: 2rem */
+    }
+
+    #sobre {
+        padding-bottom: 2rem; /* ajuste final para telas muito pequenas */
+    }
+}
+
